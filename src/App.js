@@ -40,6 +40,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
+import MashButton from './CustomButton';
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -97,7 +98,8 @@ const App = () => {
   };
 
   return (
-    <ImageBackground source={require('./assets/error.png')} style={styles.body}>
+    // <ImageBackground source={require('./assets/error.png')} style={styles.body}>
+    <View style={styles.body}>
       <Modal
         // transparent
 
@@ -125,20 +127,19 @@ const App = () => {
       />
       {/* <Button title={submitted ? 'clear' : 'Submit'} onPress={onPressHandler} /> */}
       {/* TouchableWithoutFeedback */}
-      <TouchableOpacity
-        onPress={onPressHandler}
-        style={styles.button}
-        activeOpacity={0.2}>
-        <Text>{submitted ? 'clear' : 'Submit'}</Text>
-      </TouchableOpacity>
+      <MashButton
+        onPressFunction={onPressHandler}
+        title={submitted ? 'clear' : 'Submit'}
+        color={'#0089'}
+      />
       {submitted ? <Text>Your name is {name}</Text> : null}
 
       <Image
-        source={require('./assets/error.png')}
+        source={require('../assets/error.png')}
         style={styles.image}
         resizeMode="stretch"
       />
-    </ImageBackground>
+    </View>
   );
 };
 
