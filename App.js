@@ -12,6 +12,8 @@ import {
   Alert,
   Button,
   FlatList,
+  Modal,
+  Pressable,
   RefreshControl,
   SafeAreaView,
   ScrollView,
@@ -72,19 +74,21 @@ const App = () => {
 
   const [name, setName] = useState('Maggie');
   const [submitted, setSubmitted] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   const onPressHandler = () => {
     if (name.length < 3) {
-      Alert.alert('Error', 'Enter a proper name', [
-        {
-          text: 'OK',
-          onPress: () => {
-            console.log('We killing it');
-          },
-        },
-      ]);
-      // ToastAndroid.showWithGravityAndOffset;
-      ToastAndroid.show('Enter a proper name', ToastAndroid.SHORT);
+      // Alert.alert('Error', 'Enter a proper name', [
+      //   {
+      //     text: 'OK',
+      //     onPress: () => {
+      //       console.log('We killing it');
+      //     },
+      //   },
+      // ]);
+      // // ToastAndroid.showWithGravityAndOffset;
+      // ToastAndroid.show('Enter a proper name', ToastAndroid.SHORT);
+      setShowWarning(true);
     } else {
       setSubmitted(!submitted);
     }
@@ -92,6 +96,21 @@ const App = () => {
 
   return (
     <View style={styles.body}>
+      <Modal
+        // transparent
+        visible={showWarning}
+        onRequestClose={() => {
+          setShowWarning(false);
+        }}>
+        <View style={styles.centered_view}>
+          <View style={styles.warning_modal}>
+            <Text>The text must be longer than 3 words</Text>
+            <Pressable onPress={() => setShowWarning(false)}>
+              <Text>Ok</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <Text>Please write your name</Text>
       <TextInput
         multiline
@@ -136,6 +155,17 @@ const styles = StyleSheet.create({
     height: 50,
     width: 150,
     alignItems: 'center',
+  },
+  warning_modal: {
+    width: 300,
+    height: 300,
+    backgroundColor: '#fff',
+  },
+  centered_view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#00000099',
   },
 });
 
