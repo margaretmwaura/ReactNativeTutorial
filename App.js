@@ -18,6 +18,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   useColorScheme,
   View,
 } from 'react-native';
@@ -65,96 +66,20 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const [name, setName] = useState('mash');
+  const [name, setName] = useState('Maggie');
 
-  const onClickHandler = () => {
-    setName('Programming with Mash');
-  };
-
-  const [Items, setItems] = useState([
-    {
-      // key: '1',
-      item: 'item1',
-    },
-    {
-      // key: '2',
-      item: 'item2',
-    },
-    {
-      // key: '3',
-      item: 'item3',
-    },
-    {
-      // key: '4',
-      item: 'item4',
-    },
-    {
-      // key: '5',
-      item: 'item5',
-    },
-    {
-      // key: '6',
-      item: 'item6',
-    },
-    {
-      // key: '7',
-      item: 'item7',
-    },
-    {
-      // key: '8',
-      item: 'item8',
-    },
-    {
-      // key: '9',
-      item: 'item9',
-    },
-    {
-      // key: '10',
-      item: 'item10',
-    },
-  ]);
-
-  const [refresh, setRefresh] = useState(false);
-
-  const onRefresh = () => {
-    setRefresh(true);
-    // setItems([...Items, {key: Items.siz, item: '66'}]);
-    setRefresh(false);
-  };
-
-  const DATA = [
-    {
-      title: 'Title 1',
-      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
-    },
-    {
-      title: 'Title 2',
-      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
-    },
-    {
-      title: 'Title 3',
-      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
-    },
-    {
-      title: 'Title 4',
-      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
-    },
-    {
-      title: 'Title 5',
-      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
-    },
-  ];
   return (
-    <SectionList
-      keyExtractor={(item, index) => index.toString()}
-      sections={DATA}
-      renderItem={({item}) => <Text>{item}</Text>}
-      renderSectionHeader={({section}) => (
-        <View style={styles.item1}>
-          <Text>{section.title}</Text>
-        </View>
-      )}
-    />
+    <View style={styles.body}>
+      <Text>Please write your name</Text>
+      <TextInput
+        multiline
+        style={styles.input}
+        placeholder="write your name hunny"
+        onChangeText={value => setName(value)}
+        secureTextEntry
+      />
+      <Text>Your name is {name}</Text>
+    </View>
   );
 };
 
@@ -165,14 +90,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  item1: {
-    // flex: 1,
-    width: 100,
-    height: 100,
-    margin: 10,
-    backgroundColor: '#00ffff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  input: {
+    borderWidth: 1,
+    width: 200,
+    borderColor: '#00ffff',
+    borderRadius: 5,
+    textAlign: 'center',
   },
 });
 
