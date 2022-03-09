@@ -9,6 +9,7 @@
 import React, {useState} from 'react';
 import {Node} from 'react';
 import {
+  Alert,
   Button,
   FlatList,
   RefreshControl,
@@ -19,6 +20,9 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  ToastAndroid,
+  Touchable,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -67,6 +71,24 @@ const App = () => {
   };
 
   const [name, setName] = useState('Maggie');
+  const [submitted, setSubmitted] = useState(false);
+
+  const onPressHandler = () => {
+    if (name.length < 3) {
+      Alert.alert('Error', 'Enter a proper name', [
+        {
+          text: 'OK',
+          onPress: () => {
+            console.log('We killing it');
+          },
+        },
+      ]);
+      // ToastAndroid.showWithGravityAndOffset;
+      ToastAndroid.show('Enter a proper name', ToastAndroid.SHORT);
+    } else {
+      setSubmitted(!submitted);
+    }
+  };
 
   return (
     <View style={styles.body}>
@@ -76,9 +98,20 @@ const App = () => {
         style={styles.input}
         placeholder="write your name hunny"
         onChangeText={value => setName(value)}
-        secureTextEntry
+        // secureTextEntry
       />
-      <Text>Your name is {name}</Text>
+
+      {/* <Button title={submitted ? 'clear' : 'Submit'} onPress={onPressHandler} /> */}
+
+      {/* TouchableWithoutFeedback */}
+      <TouchableOpacity
+        onPress={onPressHandler}
+        style={styles.button}
+        activeOpacity={0.2}>
+        <Text>{submitted ? 'clear' : 'Submit'}</Text>
+      </TouchableOpacity>
+
+      {submitted ? <Text>Your name is {name}</Text> : null}
     </View>
   );
 };
@@ -96,6 +129,13 @@ const styles = StyleSheet.create({
     borderColor: '#00ffff',
     borderRadius: 5,
     textAlign: 'center',
+  },
+  button: {
+    // flex: 1,
+    backgroundColor: '#00ffff',
+    height: 50,
+    width: 150,
+    alignItems: 'center',
   },
 });
 
