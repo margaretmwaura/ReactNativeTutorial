@@ -14,6 +14,7 @@ import {
   RefreshControl,
   SafeAreaView,
   ScrollView,
+  SectionList,
   StatusBar,
   StyleSheet,
   Text,
@@ -120,25 +121,39 @@ const App = () => {
     // setItems([...Items, {key: Items.siz, item: '66'}]);
     setRefresh(false);
   };
+
+  const DATA = [
+    {
+      title: 'Title 1',
+      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
+    },
+    {
+      title: 'Title 2',
+      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
+    },
+    {
+      title: 'Title 3',
+      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
+    },
+    {
+      title: 'Title 4',
+      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
+    },
+    {
+      title: 'Title 5',
+      data: ['item 1-1', 'item 2 -2', 'item 2 -2'],
+    },
+  ];
   return (
-    <FlatList
-      // horizontal
-      // inverted
-      numColumns={2}
+    <SectionList
       keyExtractor={(item, index) => index.toString()}
-      data={Items}
-      renderItem={({item}) => (
+      sections={DATA}
+      renderItem={({item}) => <Text>{item}</Text>}
+      renderSectionHeader={({section}) => (
         <View style={styles.item1}>
-          <Text>{item.item}</Text>
+          <Text>{section.title}</Text>
         </View>
       )}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={onRefresh}
-          colors={['00ffff']}
-        />
-      }
     />
   );
 };
