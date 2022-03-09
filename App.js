@@ -12,6 +12,8 @@ import {
   Alert,
   Button,
   FlatList,
+  Image,
+  ImageBackground,
   Modal,
   Pressable,
   RefreshControl,
@@ -95,13 +97,15 @@ const App = () => {
   };
 
   return (
-    <View style={styles.body}>
+    <ImageBackground source={require('./assets/error.png')} style={styles.body}>
       <Modal
         // transparent
+
         visible={showWarning}
         onRequestClose={() => {
           setShowWarning(false);
-        }}>
+        }}
+        animationType="slide">
         <View style={styles.centered_view}>
           <View style={styles.warning_modal}>
             <Text>The text must be longer than 3 words</Text>
@@ -117,11 +121,9 @@ const App = () => {
         style={styles.input}
         placeholder="write your name hunny"
         onChangeText={value => setName(value)}
-        // secureTextEntry
+        secureTextEntry
       />
-
       {/* <Button title={submitted ? 'clear' : 'Submit'} onPress={onPressHandler} /> */}
-
       {/* TouchableWithoutFeedback */}
       <TouchableOpacity
         onPress={onPressHandler}
@@ -129,9 +131,14 @@ const App = () => {
         activeOpacity={0.2}>
         <Text>{submitted ? 'clear' : 'Submit'}</Text>
       </TouchableOpacity>
-
       {submitted ? <Text>Your name is {name}</Text> : null}
-    </View>
+
+      <Image
+        source={require('./assets/error.png')}
+        style={styles.image}
+        resizeMode="stretch"
+      />
+    </ImageBackground>
   );
 };
 
@@ -166,6 +173,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#00000099',
+  },
+  image: {
+    width: 100,
+    height: 100,
   },
 });
 
