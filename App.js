@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import {Node} from 'react';
 import {
   Button,
+  FlatList,
   RefreshControl,
   SafeAreaView,
   ScrollView,
@@ -71,43 +72,43 @@ const App = () => {
 
   const [Items, setItems] = useState([
     {
-      key: 1,
+      // key: '1',
       item: 'item1',
     },
     {
-      key: 2,
+      // key: '2',
       item: 'item2',
     },
     {
-      key: 3,
+      // key: '3',
       item: 'item3',
     },
     {
-      key: 4,
+      // key: '4',
       item: 'item4',
     },
     {
-      key: 5,
+      // key: '5',
       item: 'item5',
     },
     {
-      key: 6,
+      // key: '6',
       item: 'item6',
     },
     {
-      key: 7,
+      // key: '7',
       item: 'item7',
     },
     {
-      key: 8,
+      // key: '8',
       item: 'item8',
     },
     {
-      key: 9,
+      // key: '9',
       item: 'item9',
     },
     {
-      key: 10,
+      // key: '10',
       item: 'item10',
     },
   ]);
@@ -120,24 +121,25 @@ const App = () => {
     setRefresh(false);
   };
   return (
-    <ScrollView
+    <FlatList
+      // horizontal
+      // inverted
+      numColumns={2}
+      keyExtractor={(item, index) => index.toString()}
+      data={Items}
+      renderItem={({item}) => (
+        <View style={styles.item1}>
+          <Text>{item.item}</Text>
+        </View>
+      )}
       refreshControl={
         <RefreshControl
           refreshing={refresh}
           onRefresh={onRefresh}
           colors={['00ffff']}
         />
-      }>
-      <View style={styles.body}>
-        {Items.map(item => {
-          return (
-            <View style={styles.item1} key={item.key}>
-              <Text>{item.item}</Text>
-            </View>
-          );
-        })}
-      </View>
-    </ScrollView>
+      }
+    />
   );
 };
 
