@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import {Node} from 'react';
 import {
   Button,
+  RefreshControl,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -68,52 +69,75 @@ const App = () => {
     setName('Programming with Mash');
   };
 
+  const [Items, setItems] = useState([
+    {
+      key: 1,
+      item: 'item1',
+    },
+    {
+      key: 2,
+      item: 'item2',
+    },
+    {
+      key: 3,
+      item: 'item3',
+    },
+    {
+      key: 4,
+      item: 'item4',
+    },
+    {
+      key: 5,
+      item: 'item5',
+    },
+    {
+      key: 6,
+      item: 'item6',
+    },
+    {
+      key: 7,
+      item: 'item7',
+    },
+    {
+      key: 8,
+      item: 'item8',
+    },
+    {
+      key: 9,
+      item: 'item9',
+    },
+    {
+      key: 10,
+      item: 'item10',
+    },
+  ]);
+
+  const [refresh, setRefresh] = useState(false);
+
+  const onRefresh = () => {
+    setRefresh(true);
+    // setItems([...Items, {key: Items.siz, item: '66'}]);
+    setRefresh(false);
+  };
   return (
-    // <NavigationContainer>
-    //   <SafeAreaView style={backgroundStyle}>
-    //     <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-    //     <ScrollView
-    //       contentInsetAdjustmentBehavior="automatic"
-    //       style={backgroundStyle}>
-    //       {/* <Header /> */}
-    <View
-      // style={{
-      //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
-      // }}>
-      style={styles.body}>
-      <View style={styles.view1}>
-        <Text> My name is {name}</Text>
-        <Text>1</Text>
-        <Button title="change state yess" onPress={onClickHandler} />
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={onRefresh}
+          colors={['00ffff']}
+        />
+      }>
+      <View style={styles.body}>
+        {Items.map(item => {
+          return (
+            <View style={styles.item1} key={item.key}>
+              <Text>{item.item}</Text>
+            </View>
+          );
+        })}
       </View>
-      <View style={styles.view2}>
-        <Text> My name is {name}</Text>
-        <Text>2</Text>
-        <Button title="change state yess" onPress={onClickHandler} />
-      </View>
-      <View style={styles.view3}>
-        <Text> My name is {name}</Text>
-        <Text>3</Text>
-        <Button title="change state yess" onPress={onClickHandler} />
-      </View>
-      {/* <Section title="Step One">
-              Edit <Text style={styles.highlight}>App.js</Text> to change this
-              screen and then come back to see your edits.
-            </Section>
-            <Section title="See Your Changes">
-              <ReloadInstructions />
-            </Section>
-            <Section title="Debug">
-              <DebugInstructions />
-            </Section>
-            <Section title="Learn More">
-              Read the docs to discover what to do next:
-            </Section>
-            <LearnMoreLinks /> */}
-    </View>
-    //     </ScrollView>
-    //   </SafeAreaView>
-    // </NavigationContainer>
+    </ScrollView>
   );
 };
 
@@ -124,43 +148,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  view1: {
+  item1: {
     // flex: 1,
-    width: 200,
-    height: 200,
+    width: 100,
+    height: 100,
+    margin: 10,
     backgroundColor: '#00ffff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  view2: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#0000ff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  view3: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#ff00ff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
   },
 });
 
