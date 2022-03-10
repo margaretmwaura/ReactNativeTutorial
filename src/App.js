@@ -7,6 +7,7 @@
  */
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useState} from 'react';
@@ -15,19 +16,44 @@ import {View, Text, StyleSheet, Pressable} from 'react-native';
 import ScreenA from './ScreenA';
 import ScreenB from './ScreenB';
 
-const Tab = createMaterialTopTabNavigator();
+const Drawer = createDrawerNavigator();
 
+// for icons use drawerIcon
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
+      <Drawer.Navigator
+        initialRouteName="ScreenB"
+        drawerPosition="left"
+        drawerType="front"
+        hideStatusBar={true}
+        overlayColor="#00000090"
+        screenOptions={{
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundcolor: '#0080ff',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontSize: 25,
+            fontWeight: 'bold',
+          },
+        }}
+        drawerStyle={{
+          backgroundcolor: '#00f',
+        }}>
+        <Drawer.Screen
           name="Screen A"
           component={ScreenA}
-          options={{header: () => null}}
+          options={{header: () => null, title: 'Screen A Title'}}
         />
-        <Tab.Screen name="Screen B" component={ScreenB} />
-      </Tab.Navigator>
+        <Drawer.Screen
+          name="Screen B"
+          component={ScreenB}
+          options={{header: () => null, title: 'Screen B Title'}}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
