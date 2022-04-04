@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import {Node} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 
-function ScreenB({navigation}) {
+function ScreenB({navigation, route}) {
+  const {ItemName, ItemId} = route.params;
   const onPressHandler = () => {
-    navigation.navigate('Screen A');
+    navigation.navigate('Screen A', {message: 'We are from screen B'});
     // navigation.goBack();
   };
   return (
@@ -14,6 +15,8 @@ function ScreenB({navigation}) {
         onPress={onPressHandler}
         style={({pressed}) => ({backgroundColor: pressed ? '#ddd' : '#0f0'})}>
         <Text style={styles.text}>Go to screen A </Text>
+        <Text style={styles.text}>NAME : {ItemName} </Text>
+        <Text style={styles.text}>ID : {ItemId}</Text>
       </Pressable>
     </View>
   );

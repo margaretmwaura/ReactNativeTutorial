@@ -52,6 +52,10 @@ function App() {
           name="Screen B"
           component={ScreenB}
           options={{header: () => null, title: 'Screen B Title'}}
+          initialParams={{
+            ItemName: 'Item from Drawer',
+            ItemId: 12,
+          }}
         />
       </Drawer.Navigator>
     </NavigationContainer>

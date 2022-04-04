@@ -2,9 +2,15 @@ import React, {useState} from 'react';
 import {Node} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 
-function ScreenA({navigation}) {
+function ScreenA({navigation, route}) {
   const onPressHandler = () => {
-    navigation.replace('Screen B');
+    navigation.navigate(
+      'Screen B',
+      // {
+      //   ItemName: 'Item from Screen A',
+      //   ItemId: 12,
+      // }
+    );
   };
 
   return (
@@ -14,6 +20,7 @@ function ScreenA({navigation}) {
         onPress={onPressHandler}
         style={({pressed}) => ({backgroundColor: pressed ? '#ddd' : '#0f0'})}>
         <Text style={styles.text}>Go to screen B </Text>
+        <Text style={styles.text}>{route.params?.message}</Text>
       </Pressable>
     </View>
   );
