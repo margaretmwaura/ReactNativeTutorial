@@ -15,50 +15,55 @@ import {Node} from 'react';
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import ScreenA from './ScreenA';
 import ScreenB from './ScreenB';
+import {Provider} from 'react-redux';
+
+import {store} from './redux/store';
 
 const Drawer = createDrawerNavigator();
 
 // for icons use drawerIcon
 function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        initialRouteName="ScreenB"
-        drawerPosition="left"
-        drawerType="front"
-        hideStatusBar={true}
-        overlayColor="#00000090"
-        screenOptions={{
-          headerShown: true,
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundcolor: '#0080ff',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontSize: 25,
-            fontWeight: 'bold',
-          },
-        }}
-        drawerStyle={{
-          backgroundcolor: '#00f',
-        }}>
-        <Drawer.Screen
-          name="Screen A"
-          component={ScreenA}
-          options={{header: () => null, title: 'Screen A Title'}}
-        />
-        <Drawer.Screen
-          name="Screen B"
-          component={ScreenB}
-          options={{header: () => null, title: 'Screen B Title'}}
-          initialParams={{
-            ItemName: 'Item from Drawer',
-            ItemId: 12,
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          initialRouteName="ScreenB"
+          drawerPosition="left"
+          drawerType="front"
+          hideStatusBar={true}
+          overlayColor="#00000090"
+          screenOptions={{
+            headerShown: true,
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundcolor: '#0080ff',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontSize: 25,
+              fontWeight: 'bold',
+            },
           }}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+          drawerStyle={{
+            backgroundcolor: '#00f',
+          }}>
+          <Drawer.Screen
+            name="Screen A"
+            component={ScreenA}
+            options={{header: () => null, title: 'Screen A Title'}}
+          />
+          <Drawer.Screen
+            name="Screen B"
+            component={ScreenB}
+            options={{header: () => null, title: 'Screen B Title'}}
+            initialParams={{
+              ItemName: 'Item from Drawer',
+              ItemId: 12,
+            }}
+          />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

@@ -1,27 +1,26 @@
 import React, {useState} from 'react';
 import {Node} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
+import CounterApp from './CounterApp';
 
 function ScreenA({navigation, route}) {
-  const onPressHandler = () => {
-    navigation.navigate(
-      'Screen B',
-      // {
-      //   ItemName: 'Item from Screen A',
-      //   ItemId: 12,
-      // }
-    );
-  };
-
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>On Screen A</Text>
-      <Pressable
+      {/* <Text style={styles.text}>On Screen A</Text> */}
+      {/* <Pressable
         onPress={onPressHandler}
         style={({pressed}) => ({backgroundColor: pressed ? '#ddd' : '#0f0'})}>
-        <Text style={styles.text}>Go to screen B </Text>
-        <Text style={styles.text}>{route.params?.message}</Text>
-      </Pressable>
+        <Text style={styles.text}>Get the last user</Text>
+      </Pressable> */}
+      {/* <Text style={styles.text}>{route.params?.message}</Text>
+        <Text style={styles.text}>{name}</Text> */}
+      <CounterApp />
     </View>
   );
 }
