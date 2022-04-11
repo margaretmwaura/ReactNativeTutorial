@@ -1,0 +1,6 @@
+info Found Xcode workspace "AwesomeProject.xcworkspace"
+info Building (using "xcodebuild -workspace AwesomeProject.xcworkspace -configuration Debug -scheme AwesomeProject -destination id=E6550FF1-4B66-434B-BBD9-90B749D954FF")
+success Successfully built the app
+info Installing "/Users/margaretmwaura/Library/Developer/Xcode/DerivedData/AwesomeProject-ajgvtmawlybkvlducazjsizurbxf/Build/Products/Debug-iphonesimulator/AwesomeProject.app"
+info Launching "org.reactjs.native.example.AwesomeProject"
+success Successfully launched the app on the simulator
